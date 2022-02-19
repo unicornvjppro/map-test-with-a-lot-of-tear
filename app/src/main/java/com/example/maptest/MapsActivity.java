@@ -82,7 +82,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
 
                 Location lastLocation=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                userLatLong=new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude());
+                if(lastLocation!=null){
+                    userLatLong=new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude());
+                }
+
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(userLatLong).title("vi tri"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(userLatLong));
